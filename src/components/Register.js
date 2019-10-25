@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { connect } from 'react-redux';
 import { Card, Form, Input, DatePicker, Button, Table, Typography } from 'antd';
+import { Row, Col } from 'antd';
 import 'antd/dist/antd.css';
 
 
@@ -80,7 +81,13 @@ const Register = (props) => {
         <div className="App">
           
             <div>
-                <Card title="Add Users" style={{ width: "100%" }}>
+            <Row>
+                <Col span={4}></Col>
+                <Col span={12}>
+                    <h3>Add Users</h3>
+                </Col>
+            </Row>
+                <Card style={{ width: "100%" }}>
                     <Form style={{ width: "70%", margin: "0 auto" }} onSubmit={handleSubmit} className="login-form">
                         <Form.Item >
                             {getFieldDecorator('firstName', {
@@ -139,11 +146,18 @@ const Register = (props) => {
                                 </Button>
                         </Form.Item>
                     </Form>
+                    <Row>
+                        <Col span={3}></Col>
+                        <Col span={17}>
+                            <h4>Registered Users</h4>
+                            {
+                                users.length > 0 ? <Table locale={locale} columns={columns} rowKey="id" dataSource={users} /> : <em>no record found.</em>
+                            }
+                        </Col>
+                        <Col span={4}></Col>
+                    </Row>
                     <hr />
-                    <h4>Registered Users</h4>
-                    {
-                        users.length > 0 ? <Table locale={locale} columns={columns} rowKey="id" dataSource={users} /> : <em>no record found.</em>
-                    }
+                   
                     
                 </Card>
 
